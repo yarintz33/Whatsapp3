@@ -10,7 +10,7 @@ public class PostContact {
     private String id;
     private String name;
     private String message;
-    private String lastDate;
+    private String lastdate;
     //private Image profilePic;
 
     public String getMessage() {
@@ -21,12 +21,12 @@ public class PostContact {
         this.message = message;
     }
 
-    public String getLastDate() {
-        return lastDate;
+    public String getlastdate() {
+        return lastdate;
     }
 
-    public void setLastDate(String lastDate) {
-        this.lastDate = lastDate;
+    public void setlastdate(String lastdate) {
+        this.lastdate = lastdate;
     }
 
     public String getId() {
@@ -45,8 +45,10 @@ public class PostContact {
         this.name = name;
     }
 
-    public PostContact(String id, String name) {
+    public PostContact(String id, String name,String message, String lastdate ) {
         this.id = id;
         this.name = name;
+        this.message = message;
+        this.lastdate = lastdate;
     }
 }

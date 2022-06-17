@@ -23,6 +23,7 @@ import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
+
     private PostDao postDao;
     private AppDataBase db;
     private List<Post> posts;
@@ -34,6 +35,10 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+
+
+
 
         db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();

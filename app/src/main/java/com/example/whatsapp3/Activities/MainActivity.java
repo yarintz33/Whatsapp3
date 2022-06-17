@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.whatsapp3.api.PostApi;
-import com.example.whatsapp3.api.PostContactApi;
 import com.example.whatsapp3.databinding.ActivityMainBinding;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -25,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         PostApi postApi = new PostApi();
         postApi.get();
-        PostContactApi postContactApi = new PostContactApi();
-        postContactApi.get();
+
 
         MainActivityBinding.loginBtn.setOnClickListener(view -> {
             Intent i = new Intent(this, ContactsList.class);

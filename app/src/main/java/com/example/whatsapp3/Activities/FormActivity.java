@@ -1,8 +1,6 @@
 package com.example.whatsapp3.Activities;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -22,12 +20,12 @@ public class FormActivity extends AppCompatActivity {
                 .allowMainThreadQueries().build();
         postDao = db.postDao();
 
-        Button saveBtn = findViewById(R.id.saveBtn);
+       /* Button saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(view -> {
             EditText editContact = findViewById(R.id.editContact);
             com.example.whatsapp3.Post post = new com.example.whatsapp3.Post(0,editContact.getText().toString());
             postDao.insert(post);
             finish();
-        });
+        });*/
     }
 }

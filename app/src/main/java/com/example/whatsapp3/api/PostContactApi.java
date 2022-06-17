@@ -1,5 +1,7 @@
 package com.example.whatsapp3.api;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.myApplication;
@@ -27,7 +29,7 @@ public class PostContactApi {
                 .build();
         serverApi = retrofit.create(ServerContactApi.class);
     }
-    public void get() {
+    public void get(MutableLiveData<List<PostContact>> contactsListData) {
         Call<List<PostContact>> call = serverApi.getPosts();
         call.enqueue(new Callback<List<PostContact>>() {
             @Override
@@ -35,11 +37,9 @@ public class PostContactApi {
             }
 
             @Override
-
-
             public void onResponse(Call<List<PostContact>> call, Response<List<PostContact>> response) {
-
-                List<PostContact> posts = response.body();
+               contactsListData.setValue(response.body());
+               // List<PostContact> posts = response.body();
 
             }
         });

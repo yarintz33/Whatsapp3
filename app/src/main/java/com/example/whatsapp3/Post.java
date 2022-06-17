@@ -16,8 +16,8 @@ public class Post {
 
     }
 
-    public Post(int id, String content) {
-        this.id = id;
+    public Post(String content) {
+        //this.id = id;
         this.content = content;
     }
 
