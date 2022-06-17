@@ -1,14 +1,14 @@
-package com.example.whatsapp3;
+package com.example.whatsapp3.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.whatsapp3.api.PostApi;
+import com.example.whatsapp3.api.PostContactApi;
 import com.example.whatsapp3.databinding.ActivityMainBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,10 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(MainActivityBinding.getRoot());
 
-
+        PostApi postApi = new PostApi();
+        postApi.get();
+        PostContactApi postContactApi = new PostContactApi();
+        postContactApi.get();
 
         MainActivityBinding.loginBtn.setOnClickListener(view -> {
-            Intent i = new Intent(this, ChatActivity.class);
+            Intent i = new Intent(this, ContactsList.class);
             startActivity(i);
         });
 
@@ -35,11 +38,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(j);
         });
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String token = instanceIdResult.getToken();
-            }
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, instanceIdResult -> {
+            String token = instanceIdResult.getToken();
         });
     }
 }

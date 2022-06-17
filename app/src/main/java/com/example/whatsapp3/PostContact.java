@@ -9,6 +9,25 @@ public class PostContact {
     @PrimaryKey
     private String id;
     private String name;
+    private String message;
+    private String lastDate;
+    //private Image profilePic;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(String lastDate) {
+        this.lastDate = lastDate;
+    }
 
     public String getId() {
         return id;

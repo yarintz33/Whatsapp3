@@ -1,4 +1,4 @@
-package com.example.whatsapp3;
+package com.example.whatsapp3.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 
+import com.example.whatsapp3.AppDataBase;
+import com.example.whatsapp3.Post;
+import com.example.whatsapp3.PostDao;
+import com.example.whatsapp3.R;
+import com.example.whatsapp3.SampleViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
@@ -42,7 +47,7 @@ public class ChatActivity extends AppCompatActivity {
 
         //FloatingActionButton btnAdd = findViewById(R.id.addBtn);
         addBtn.setOnClickListener(view -> {
-            Intent i = new Intent(this,FormActivity.class);
+            Intent i = new Intent(this, FormActivity.class);
             startActivity(i);
             String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
             viewModel.getDate().setValue(currentDateTime);

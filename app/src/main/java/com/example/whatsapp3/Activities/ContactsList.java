@@ -1,4 +1,4 @@
-package com.example.whatsapp3;
+package com.example.whatsapp3.Activities;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whatsapp3.Adapters.ContactsListAdapter;
+import com.example.whatsapp3.PostContact;
+import com.example.whatsapp3.R;
 
 import java.util.ArrayList;
 import java.util.List;
