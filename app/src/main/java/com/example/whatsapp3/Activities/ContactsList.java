@@ -15,7 +15,7 @@ import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 
 public class ContactsList extends AppCompatActivity {
-    private boolean flag = false;
+    private int flag = 0;
     private PostDao postDao;
     private AppDataBase db;
     private ContactsViewModel viewModel;
@@ -39,12 +39,12 @@ public class ContactsList extends AppCompatActivity {
         
       viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
-            /*if(flag == false){
+            /*if(flag == 1){
                 PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!");
-               // adapter.addContact(pc);
                 viewModel.add(pc);
-                this.flag = true;
-            }*/
+            }
+            flag++;
+            */
 
         });
 
