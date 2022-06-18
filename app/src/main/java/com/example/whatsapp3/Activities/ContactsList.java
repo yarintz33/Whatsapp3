@@ -11,6 +11,7 @@ import androidx.room.Room;
 import com.example.whatsapp3.Adapters.ContactsListAdapter;
 import com.example.whatsapp3.AppDataBase;
 import com.example.whatsapp3.ContactsViewModel;
+import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 
@@ -39,12 +40,12 @@ public class ContactsList extends AppCompatActivity {
         
       viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
-            /*if(flag == 1){
+            if(flag == 1){
                 PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!");
                 viewModel.add(pc);
             }
             flag++;
-            */
+
 
         });
 

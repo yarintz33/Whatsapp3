@@ -9,8 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whatsapp3.R;
 import com.example.whatsapp3.PostContact;
+import com.example.whatsapp3.R;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
@@ -19,11 +20,16 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
     class ContactViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView id;
-
+        private TextView message;
+        private TextView lasdate;
+        private ShapeableImageView profilePic;
         private ContactViewHolder(View itemView){
             super(itemView);
-            name = itemView.findViewById(R.id.contactName);
+            name = itemView.findViewById(R.id.contactItemNickname);
             id = itemView.findViewById(R.id.contactId);
+            message = itemView.findViewById(R.id.ContactItemLatMessage);
+            //lastdate =
+            profilePic = itemView.findViewById(R.id.profileImage);
         }
     }
 
@@ -34,7 +40,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
 
     @Override
     public ContactViewHolder onCreateViewHolder (ViewGroup parent, int ViewType){
-        View itemView = mInflater.inflate(R.layout.contact_item_layout, parent,false);
+        View itemView = mInflater.inflate(R.layout.contact_item, parent,false);
         return  new ContactViewHolder (itemView);
     }
 
