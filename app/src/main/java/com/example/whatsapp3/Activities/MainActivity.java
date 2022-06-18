@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.whatsapp3.api.PostApi;
 import com.example.whatsapp3.databinding.ActivityMainBinding;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(MainActivityBinding.getRoot());
 
-        PostApi postApi = new PostApi();
-        postApi.get();
+        //PostApi postApi = new PostApi();
+        //postApi.get();
 
 
         MainActivityBinding.loginBtn.setOnClickListener(view -> {

@@ -5,12 +5,14 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import com.example.whatsapp3.AppDataBase;
+import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 
 public class FormActivity extends AppCompatActivity {
 
-    private com.example.whatsapp3.PostDao postDao;
-    private com.example.whatsapp3.AppDataBase db;
+    private PostDao postDao;
+    private AppDataBase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,7 @@ public class FormActivity extends AppCompatActivity {
        /* Button saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(view -> {
             EditText editContact = findViewById(R.id.editContact);
-            com.example.whatsapp3.Post post = new com.example.whatsapp3.Post(0,editContact.getText().toString());
+            Post post = new Post(0,editContact.getText().toString());
             postDao.insert(post);
             finish();
         });*/

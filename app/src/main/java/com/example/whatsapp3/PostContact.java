@@ -1,33 +1,19 @@
 package com.example.whatsapp3;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class PostContact {
 
-    @PrimaryKey
+    @PrimaryKey @NonNull
     private String id;
     private String name;
     private String message;
     private String lastdate;
     //private Image profilePic;
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getlastdate() {
-        return lastdate;
-    }
-
-    public void setlastdate(String lastdate) {
-        this.lastdate = lastdate;
-    }
 
     public String getId() {
         return id;
@@ -40,10 +26,26 @@ public class PostContact {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getLastdate() {
+        return lastdate;
+    }
+
+    public void setLastdate(String lastdate) {
+        this.lastdate = lastdate;
+    }
+
 
     public PostContact(String id, String name,String message, String lastdate ) {
         this.id = id;

@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PostContactApi {
 
     Retrofit retrofit;
-    ServerContactApi serverApi;
+    ServerContactApi serverContactApi;
 
     public PostContactApi() {
 //  this.postListData = postListData;
@@ -27,10 +27,16 @@ public class PostContactApi {
                 .baseUrl(myApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        serverApi = retrofit.create(ServerContactApi.class);
+        serverContactApi = retrofit.create(ServerContactApi.class);
     }
+    public void add(MutableLiveData<List<PostContact>> contactsListData, PostContact newContact){
+        List<PostContact> contacts=  contactsListData.getValue();
+        contacts.add(newContact);
+        contactsListData.postValue(contacts);
+    }
+
     public void get(MutableLiveData<List<PostContact>> contactsListData) {
-        Call<List<PostContact>> call = serverApi.getPosts();
+        Call<List<PostContact>> call = serverContactApi.getPosts();
         call.enqueue(new Callback<List<PostContact>>() {
             @Override
             public void onFailure(Call<List<PostContact>> call, Throwable t) {
