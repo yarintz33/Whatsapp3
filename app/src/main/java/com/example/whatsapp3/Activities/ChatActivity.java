@@ -42,18 +42,18 @@ public class ChatActivity extends AppCompatActivity {
 
         postDao = db.postDao();
         //handlePosts();
-        FloatingActionButton addBtn = findViewById(R.id.addBtn);
+//        FloatingActionButton addBtn = findViewById(R.id.addBtn);
         viewModel = new ViewModelProvider(this).get(SampleViewModel.class);
         // foo is the updated string.. we set the string as the title (on top of the activity page)
         viewModel.getDate().observe(this, date -> getSupportActionBar().setTitle(date));
 
         //FloatingActionButton btnAdd = findViewById(R.id.addBtn);
-        addBtn.setOnClickListener(view -> {
-            Intent i = new Intent(this, FormActivity.class);
-            startActivity(i);
-            String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-            viewModel.getDate().setValue(currentDateTime);
-        });
+//        addBtn.setOnClickListener(view -> {
+//            Intent i = new Intent(this, FormActivity.class);
+//            startActivity(i);
+//            String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
+//            viewModel.getDate().setValue(currentDateTime);
+//        });
 
 
         posts = new ArrayList<>();
