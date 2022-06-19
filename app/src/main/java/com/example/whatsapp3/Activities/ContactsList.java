@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
-
 import com.example.whatsapp3.Adapters.ContactsListAdapter;
 import com.example.whatsapp3.AppDataBase;
 import com.example.whatsapp3.ContactsViewModel;
@@ -38,7 +37,7 @@ public class ContactsList extends AppCompatActivity implements contactsClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
-
+        messages = new MutableLiveData<>();
         db = Room.databaseBuilder(getApplicationContext(), com.example.whatsapp3.AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
         postDao = db.postDao();
@@ -78,7 +77,8 @@ public class ContactsList extends AppCompatActivity implements contactsClickList
 //        Toast.makeText(this, postContact.getName(), Toast.LENGTH_SHORT).show();
 //        PostContact pc = new PostContact("addContact..", "bdika2", "hi", "work!");
 //        viewModel.add(pc);
-        Intent j = new Intent(this, ChatActivity.class);
-        startActivity(j);
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("nickName", postContact.getName());
+        startActivity(intent);
     }
 }
