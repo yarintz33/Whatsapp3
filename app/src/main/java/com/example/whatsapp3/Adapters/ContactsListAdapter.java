@@ -29,7 +29,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         private ContactViewHolder(View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.contactItemNickname);
-            id = itemView.findViewById(R.id.contactId);
+            id = itemView.findViewById(R.id.messageId);
             message = itemView.findViewById(R.id.ContactItemLatMessage);
             //lastdate =
             profilePic = itemView.findViewById(R.id.profileImage);

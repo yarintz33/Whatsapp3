@@ -59,10 +59,16 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <ListView
+            <!--<ListView
                 android:id="@+id/lvPosts"
                 android:layout_width="wrap_content"
-                android:layout_height="500dp" />
+                android:layout_height="500dp" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/messagesList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background" />
 
             <EditText
                 android:id="@+id/writeMessage"

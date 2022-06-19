@@ -1,5 +1,6 @@
 package com.example.whatsapp3.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +27,7 @@ import java.util.List;
 
     
     
-public class ContactsList extends AppCompatActivity { /// implements contactsClickListener
+public class ContactsList extends AppCompatActivity  implements contactsClickListener{
     private MutableLiveData<List<Message>> messages;
     private int flag = 0;
     private PostDao postDao;
@@ -43,15 +44,15 @@ public class ContactsList extends AppCompatActivity { /// implements contactsCli
         db = Room.databaseBuilder(getApplicationContext(), com.example.whatsapp3.AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
         postDao = db.postDao();
-
+        //viewModel = new ViewModelProvider(this).get(MessageViewModel.calss);
         viewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
 
-
+        messages = new MutableLiveData<>();
         messageApi = new MessageApi();
         userApi = new UserApi();
         postContactApi = new PostContactApi();
         RecyclerView contactsList = findViewById(R.id.contactsList);
-        final ContactsListAdapter adapter = new ContactsListAdapter(this); ///// ,this)
+        final ContactsListAdapter adapter = new ContactsListAdapter(this,this); ///// ,this)
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
         PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!", "localhost:5286");
@@ -68,18 +69,18 @@ public class ContactsList extends AppCompatActivity { /// implements contactsCli
         });
     //postContactApi.post(pc);
     //userApi.post(newUser);
-        messageApi.get(messages, "Maayan");
+        //messageApi.get(messages, "Maayan");
         int i = 0;
 
 
     }
 
-  /*  @Override
+    @Override
     public void onItemClicked(PostContact postContact) {
 //        Toast.makeText(this, postContact.getName(), Toast.LENGTH_SHORT).show();
 //        PostContact pc = new PostContact("addContact..", "bdika2", "hi", "work!");
 //        viewModel.add(pc);
         Intent j = new Intent(this, ChatActivity.class);
         startActivity(j);
-    }  */
+    }
 }
