@@ -51,11 +51,15 @@ public class MessageApi {
             }
         });
     }
-    public void post(Message message, String contactId){
+    public void add(MutableLiveData<List<Message>> messages, Message message, String contactId){
+        List<Message> messagesList=  messages.getValue();
+        messagesList.add(message);
+        messages.postValue(messagesList);
         Call<Message> call = serverMessageApi.createMessage(message, contactId);
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
+
 
             }
 

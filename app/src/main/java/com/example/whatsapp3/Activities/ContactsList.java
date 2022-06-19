@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+
 import com.example.whatsapp3.Adapters.ContactsListAdapter;
 import com.example.whatsapp3.AppDataBase;
 import com.example.whatsapp3.ContactsViewModel;
@@ -22,7 +23,6 @@ import com.example.whatsapp3.api.MessageApi;
 import com.example.whatsapp3.api.PostContactApi;
 import com.example.whatsapp3.api.UserApi;
 import java.util.List;
-
 public class ContactsList extends AppCompatActivity implements contactsClickListener{
     private MutableLiveData<List<Message>> messages;
     private int flag = 0;
@@ -32,7 +32,6 @@ public class ContactsList extends AppCompatActivity implements contactsClickList
     private PostContactApi postContactApi;
     private UserApi userApi;
     private MessageApi messageApi;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +40,7 @@ public class ContactsList extends AppCompatActivity implements contactsClickList
         db = Room.databaseBuilder(getApplicationContext(), com.example.whatsapp3.AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
         postDao = db.postDao();
-
+        //viewModel = new ViewModelProvider(this).get(MessageViewModel.calss);
         viewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
 
 
@@ -55,7 +54,7 @@ public class ContactsList extends AppCompatActivity implements contactsClickList
         PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!", "localhost:5286");
         User newUser = new User("Yarin","1234", "yerin" );
 
-      viewModel.get().observe(this, postContacts -> {
+        viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
             if(flag == 1){
                 viewModel.add(pc);

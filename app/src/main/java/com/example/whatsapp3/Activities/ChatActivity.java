@@ -8,9 +8,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.whatsapp3.Adapters.MessagesListAdapter;
 import com.example.whatsapp3.AppDataBase;
+import com.example.whatsapp3.MessagesViewModel;
 import com.example.whatsapp3.Post;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
@@ -24,7 +28,7 @@ import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
-
+    private MessagesViewModel messagesViewModel;
     private PostDao postDao;
     private AppDataBase db;
     private List<Post> posts;
@@ -38,15 +42,31 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         TextView userNickname = (TextView)findViewById(R.id.contactItemNickname);
 
+        String username = "Maayan";
+
+
+        messagesViewModel = new ViewModelProvider(this).get(MessagesViewModel.class);
+        messagesViewModel.setContatId(username);
         db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
 
         postDao = db.postDao();
+
+
+        RecyclerView messagesList = findViewById(R.id.messagesList);
+        final MessagesListAdapter adapter = new MessagesListAdapter(this); ///// ,this)
+        messagesList.setAdapter(adapter);
+        messagesList.setLayoutManager(new LinearLayoutManager(this));
+
+        messagesViewModel.get().observe(this, messages -> {
+                    adapter.setPosts(messages);
+
+                });
         //handlePosts();
 //        FloatingActionButton addBtn = findViewById(R.id.addBtn);
-        viewModel = new ViewModelProvider(this).get(SampleViewModel.class);
+   //     viewModel = new ViewModelProvider(this).get(SampleViewModel.class);
         // foo is the updated string.. we set the string as the title (on top of the activity page)
-        viewModel.getDate().observe(this, date -> getSupportActionBar().setTitle(date));
+//        viewModel.getDate().observe(this, date -> getSupportActionBar().setTitle(date));
 
         //FloatingActionButton btnAdd = findViewById(R.id.addBtn);
 //        addBtn.setOnClickListener(view -> {
@@ -57,17 +77,17 @@ public class ChatActivity extends AppCompatActivity {
 //        });
 
 
-        posts = new ArrayList<>();
-        ListView lvPost = findViewById(R.id.lvPosts);
-        adapter = new ArrayAdapter<Post>(this, android.R.layout.simple_list_item_1,posts);
-        lvPost.setAdapter(adapter);
-        lvPost.setOnItemLongClickListener((adapterView, view, i, l) -> {
-
-             Post post = posts.remove(i);
-             postDao.delete(post);
-             adapter.notifyDataSetChanged();
-             return true;
-        });
+//        posts = new ArrayList<>();
+//        ListView lvPost = findViewById(R.id.lvPosts);
+//        adapter = new ArrayAdapter<Post>(this, android.R.layout.simple_list_item_1,posts);
+//        lvPost.setAdapter(adapter);
+//        lvPost.setOnItemLongClickListener((adapterView, view, i, l) -> {
+//
+//             Post post = posts.remove(i);
+//             postDao.delete(post);
+//             adapter.notifyDataSetChanged();
+//             return true;
+// });
         /*lvPost.setOnItemClickListener(view -> {
 
         });*/
@@ -82,13 +102,11 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        posts.clear();
-        posts.addAll(postDao.index());
-        adapter.notifyDataSetChanged();
+//        posts.clear();
+//        posts.addAll(postDao.index());
+//        adapter.notifyDataSetChanged();
 
     }
-
-
 }
 
 
