@@ -10,10 +10,20 @@ public class PostContact {
     @PrimaryKey @NonNull
     private String id;
     private String name;
-    private String message;
+    private String last;
     private String lastdate;
+    private String server;
+
     //private Image profilePic;
 
+
+    public String getServer() {
+        return server;
+    }
+
+    public void setServer(String server) {
+        this.server = server;
+    }
 
     public String getId() {
         return id;
@@ -30,12 +40,12 @@ public class PostContact {
         this.name = name;
     }
 
-    public String getMessage() {
-        return message;
+    public String getLast() {
+        return last;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setLast(String last) {
+        this.last = last;
     }
 
     public String getLastdate() {
@@ -47,10 +57,11 @@ public class PostContact {
     }
 
 
-    public PostContact(String id, String name,String message, String lastdate ) {
+    public PostContact(String id, String name, String last, String lastdate, String server ) {
         this.id = id;
         this.name = name;
-        this.message = message;
+        this.last = last;
         this.lastdate = lastdate;
+        this.server = server;
     }
 }

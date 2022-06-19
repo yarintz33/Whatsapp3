@@ -81,9 +81,9 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         this.contacts = contacts;
         notifyDataSetChanged();
     }
-    public void addContact(PostContact contact){
+    /*public void addContact(PostContact contact){
         this.contacts.add(contact);
         notifyDataSetChanged();
-    }
+    }*/
     public List<PostContact> getPosts() {return contacts;}
 }

@@ -1,6 +1,5 @@
 package com.example.whatsapp3.api;
 
-import com.example.whatsapp3.Post;
 import com.example.whatsapp3.PostContact;
 
 import java.util.List;
@@ -17,8 +16,8 @@ public interface ServerContactApi {
     Call<List<PostContact>> getPosts();
 
     @POST("contacts")
-    Call<Void> createPost(@Body Post post);
-
+    //Call<Void> createContact(@Body PostContact contact);
+    Call<PostContact> createContact(@Body PostContact contact);
     @DELETE("contacts/{id}")
     Call<Void> deletePost(@Path("id") int id);
 }
