@@ -27,7 +27,7 @@
             android:textSize="28sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/editTextLoginPersonName"
             android:layout_width="372dp"
             android:layout_height="wrap_content"
             android:autofillHints=""
@@ -37,7 +37,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/editTextLoginPassword"
             android:layout_width="371dp"
             android:layout_height="wrap_content"
             android:autofillHints=""

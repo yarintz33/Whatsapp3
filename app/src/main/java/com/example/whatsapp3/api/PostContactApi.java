@@ -50,4 +50,19 @@ public class PostContactApi {
             }
         });
     }
+    public void post(PostContact contact){
+       Call<PostContact> call = serverContactApi.createContact(contact);
+        call.enqueue(new Callback<PostContact>() {
+            @Override
+            public void onResponse(Call<PostContact> call, Response<PostContact> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<PostContact> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

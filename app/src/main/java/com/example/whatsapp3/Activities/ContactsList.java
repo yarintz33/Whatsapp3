@@ -3,6 +3,7 @@ package com.example.whatsapp3.Activities;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,15 +12,27 @@ import androidx.room.Room;
 import com.example.whatsapp3.Adapters.ContactsListAdapter;
 import com.example.whatsapp3.AppDataBase;
 import com.example.whatsapp3.ContactsViewModel;
+import com.example.whatsapp3.Message;
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.User;
+import com.example.whatsapp3.api.MessageApi;
+import com.example.whatsapp3.api.PostContactApi;
+import com.example.whatsapp3.api.UserApi;
+
+import java.util.List;
 
 public class ContactsList extends AppCompatActivity {
+
+    private MutableLiveData<List<Message>> messages;
     private int flag = 0;
     private PostDao postDao;
     private AppDataBase db;
     private ContactsViewModel viewModel;
+    private PostContactApi postContactApi;
+    private UserApi userApi;
+    private MessageApi messageApi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,23 +45,29 @@ public class ContactsList extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
 
 
+        messageApi = new MessageApi();
+        userApi = new UserApi();
+        postContactApi = new PostContactApi();
         RecyclerView contactsList = findViewById(R.id.contactsList);
         final ContactsListAdapter adapter = new ContactsListAdapter(this);
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
+        PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!", "localhost:5286");
+        User newUser = new User("Yarin","1234", "yerin" );
 
-        
-      viewModel.get().observe(this, postContacts -> {
+        viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
             if(flag == 1){
-                PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!");
                 viewModel.add(pc);
             }
             flag++;
 
 
         });
-
+    //postContactApi.post(pc);
+    //userApi.post(newUser);
+        messageApi.get(messages, "Maayan");
+        int i = 0;
 
 
     }
