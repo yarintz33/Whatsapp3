@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.whatsapp3.Activities.contactsClickListener;
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.R;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -23,6 +25,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         private TextView message;
         private TextView lasdate;
         private ShapeableImageView profilePic;
+        public CardView cardView;
         private ContactViewHolder(View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.contactItemNickname);
@@ -30,13 +33,20 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             message = itemView.findViewById(R.id.ContactItemLatMessage);
             //lastdate =
             profilePic = itemView.findViewById(R.id.profileImage);
+            cardView = itemView.findViewById(R.id.contactCardInList);
         }
     }
 
     private final LayoutInflater mInflater;
     private List<PostContact> contacts;
+    private contactsClickListener listener;
 
-    public ContactsListAdapter(Context context){ mInflater = LayoutInflater.from(context);}
+
+    public ContactsListAdapter(Context context, contactsClickListener listener){
+        mInflater = LayoutInflater.from(context);
+        this.listener = listener;
+
+    }
 
     @Override
     public ContactViewHolder onCreateViewHolder (ViewGroup parent, int ViewType){
@@ -49,6 +59,13 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         if (contacts != null){
             final  PostContact current = contacts.get(position);
             holder.name.setText(current.getName());
+            int p = position;
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClicked(contacts.get(p));
+                }
+            });
         }
     }
 

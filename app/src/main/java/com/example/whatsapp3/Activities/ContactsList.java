@@ -23,8 +23,10 @@ import com.example.whatsapp3.api.UserApi;
 
 import java.util.List;
 
-public class ContactsList extends AppCompatActivity {
 
+    
+    
+public class ContactsList extends AppCompatActivity { /// implements contactsClickListener
     private MutableLiveData<List<Message>> messages;
     private int flag = 0;
     private PostDao postDao;
@@ -49,7 +51,7 @@ public class ContactsList extends AppCompatActivity {
         userApi = new UserApi();
         postContactApi = new PostContactApi();
         RecyclerView contactsList = findViewById(R.id.contactsList);
-        final ContactsListAdapter adapter = new ContactsListAdapter(this);
+        final ContactsListAdapter adapter = new ContactsListAdapter(this); ///// ,this)
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
         PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!", "localhost:5286");
@@ -71,4 +73,13 @@ public class ContactsList extends AppCompatActivity {
 
 
     }
+
+  /*  @Override
+    public void onItemClicked(PostContact postContact) {
+//        Toast.makeText(this, postContact.getName(), Toast.LENGTH_SHORT).show();
+//        PostContact pc = new PostContact("addContact..", "bdika2", "hi", "work!");
+//        viewModel.add(pc);
+        Intent j = new Intent(this, ChatActivity.class);
+        startActivity(j);
+    }  */
 }
