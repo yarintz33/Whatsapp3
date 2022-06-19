@@ -9,6 +9,7 @@
 
 
         <LinearLayout
+            android:weightSum="10"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -16,15 +17,15 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="394dp"
-                android:layout_height="0dp"
                 android:layout_margin="10dp"
                 android:layout_marginStart="9dp"
                 android:layout_marginEnd="9dp"
-                android:layout_weight="1"
+                android:layout_weight="4"
                 app:cardCornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -32,8 +33,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/profileImage"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -47,7 +48,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_weight="4"
                         android:fontFamily="sans-serif-medium"
                         android:text="Yarin"
                         android:textColor="@color/purple_700"
@@ -60,11 +60,13 @@
             </androidx.cardview.widget.CardView>
 
             <ListView
+                android:layout_weight="5"
                 android:id="@+id/lvPosts"
                 android:layout_width="wrap_content"
                 android:layout_height="500dp" />
 
             <EditText
+                android:layout_weight="1"
                 android:id="@+id/writeMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

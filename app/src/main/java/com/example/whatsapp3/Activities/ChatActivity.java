@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,7 +36,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        TextView userNickname = (TextView)findViewById(R.id.contactItemNickname);
 
         db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
@@ -66,11 +67,15 @@ public class ChatActivity extends AppCompatActivity {
              postDao.delete(post);
              adapter.notifyDataSetChanged();
              return true;
- });
+        });
         /*lvPost.setOnItemClickListener(view -> {
 
         });*/
 
+        Intent incomingIntent = getIntent();
+        String incomingNickName = incomingIntent.getStringExtra("nickName");
+
+        userNickname.setText(incomingNickName);
 
     }
 
@@ -82,6 +87,8 @@ public class ChatActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
     }
+
+
 }
 
 

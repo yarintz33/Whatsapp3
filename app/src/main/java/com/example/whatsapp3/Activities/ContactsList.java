@@ -62,7 +62,8 @@ public class ContactsList extends AppCompatActivity implements contactsClickList
 //        Toast.makeText(this, postContact.getName(), Toast.LENGTH_SHORT).show();
 //        PostContact pc = new PostContact("addContact..", "bdika2", "hi", "work!");
 //        viewModel.add(pc);
-        Intent j = new Intent(this, ChatActivity.class);
-        startActivity(j);
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("nickName", postContact.getName());
+        startActivity(intent);
     }
 }
