@@ -106,6 +106,7 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("nickName", postContact.getName());
         intent.putExtra("id", postContact.getId());
+        //intent.putExtra("contact", postContact);
         startActivity(intent);
     }
 }
