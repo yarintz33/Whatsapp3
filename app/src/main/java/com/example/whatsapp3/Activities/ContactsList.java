@@ -17,10 +17,13 @@ import com.example.whatsapp3.Message;
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Token;
 import com.example.whatsapp3.User;
 import com.example.whatsapp3.api.MessageApi;
 import com.example.whatsapp3.api.PostContactApi;
+import com.example.whatsapp3.api.TokenApi;
 import com.example.whatsapp3.api.UserApi;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
@@ -29,7 +32,9 @@ import java.util.List;
     
 public class ContactsList extends AppCompatActivity  implements contactsClickListener{
     private MutableLiveData<List<Message>> messages;
+    private TokenApi tokenApi;
     private int flag = 0;
+    private String token;
     private PostDao postDao;
     private AppDataBase db;
     private ContactsViewModel viewModel;
@@ -40,6 +45,14 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ContactsList.this, instanceIdResult -> {
+            token = instanceIdResult.getToken();
+            tokenApi = new TokenApi();
+            tokenApi.post(new Token("Yarin", instanceIdResult.getToken()));
+        });
+
+
 
         db = Room.databaseBuilder(getApplicationContext(), com.example.whatsapp3.AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
@@ -55,13 +68,13 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         final ContactsListAdapter adapter = new ContactsListAdapter(this,this); ///// ,this)
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
-        PostContact pc = new PostContact("addContact..", "bdika", "hi", "work!", "localhost:5286");
+        PostContact pc = new PostContact("addContact..", "bdika", "", "", "localhost:5286");
         User newUser = new User("Yarin","1234", "yerin" );
 
         viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
             if(flag == 1){
-                viewModel.add(pc);
+               // viewModel.add(pc);
             }
             flag++;
 

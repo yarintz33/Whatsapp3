@@ -33,6 +33,20 @@ public class UserApi {
         contactsListData.postValue(contacts);*/
     //}
 
+    public void signIn(String username){
+        Call<Void> call = serverUserApi.signIn(username);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        } );
+    }
     public void get(MutableLiveData<User> logedInUser, String username,String password) {
         Call<User> call = serverUserApi.getUser(username,password);
         call.enqueue(new Callback<User>() {

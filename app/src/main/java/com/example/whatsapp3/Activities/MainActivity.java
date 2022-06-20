@@ -11,7 +11,6 @@ import com.example.whatsapp3.R;
 import com.example.whatsapp3.User;
 import com.example.whatsapp3.api.UserApi;
 import com.example.whatsapp3.databinding.ActivityMainBinding;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         MainActivityBinding = ActivityMainBinding.inflate(getLayoutInflater());
-
+        user = new MutableLiveData<>();
         setContentView(MainActivityBinding.getRoot());
         userApi = new UserApi();
         EditText username = findViewById(R.id.editTextLoginPersonName);
@@ -35,11 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         MainActivityBinding.loginBtn.setOnClickListener(view -> {
-            //userApi.get(user, username.getText().toString(), password.getText().toString());
-            //if(user != null){
+            userApi.get(user, username.getText().toString(), password.getText().toString());
+            if(user != null){
+                userApi.signIn(username.getText().toString());
                 Intent i = new Intent(this, ContactsList.class);
                 startActivity(i);
-           // }
+            }
+            else{
+
+            }
         });
 
         MainActivityBinding.SignInBtn.setOnClickListener(view -> {
@@ -47,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(j);
         });
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, instanceIdResult -> {
+        /*FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, instanceIdResult -> {
             String token = instanceIdResult.getToken();
-        });
+        });*/
     }
 }

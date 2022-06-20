@@ -57,7 +57,7 @@ public class PostContact {
     }
 
 
-    public PostContact(String id, String name, String last, String lastdate, String server ) {
+    public PostContact(String id, String name, String last, String lastdate, String server) {
         this.id = id;
         this.name = name;
         this.last = last;

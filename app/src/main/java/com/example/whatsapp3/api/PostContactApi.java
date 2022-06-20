@@ -30,6 +30,7 @@ public class PostContactApi {
         serverContactApi = retrofit.create(ServerContactApi.class);
     }
     public void add(MutableLiveData<List<PostContact>> contactsListData, PostContact newContact){
+        post(newContact);
         List<PostContact> contacts=  contactsListData.getValue();
         contacts.add(newContact);
         contactsListData.postValue(contacts);
