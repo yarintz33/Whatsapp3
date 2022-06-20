@@ -17,13 +17,10 @@ import com.example.whatsapp3.Message;
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
-import com.example.whatsapp3.Token;
 import com.example.whatsapp3.User;
 import com.example.whatsapp3.api.MessageApi;
 import com.example.whatsapp3.api.PostContactApi;
-import com.example.whatsapp3.api.TokenApi;
 import com.example.whatsapp3.api.UserApi;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
@@ -54,18 +51,19 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
 
 
 
+        messages = new MutableLiveData<>();
         db = Room.databaseBuilder(getApplicationContext(), com.example.whatsapp3.AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
         postDao = db.postDao();
         //viewModel = new ViewModelProvider(this).get(MessageViewModel.calss);
         viewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
 
-        messages = new MutableLiveData<>();
+
         messageApi = new MessageApi();
         userApi = new UserApi();
         postContactApi = new PostContactApi();
         RecyclerView contactsList = findViewById(R.id.contactsList);
-        final ContactsListAdapter adapter = new ContactsListAdapter(this,this); ///// ,this)
+        final ContactsListAdapter adapter = new ContactsListAdapter(this, this);
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
         PostContact pc = new PostContact("addContact..", "bdika", "", "", "localhost:5286");
@@ -93,7 +91,10 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
 //        Toast.makeText(this, postContact.getName(), Toast.LENGTH_SHORT).show();
 //        PostContact pc = new PostContact("addContact..", "bdika2", "hi", "work!");
 //        viewModel.add(pc);
-        Intent j = new Intent(this, ChatActivity.class);
-        startActivity(j);
+        /* Intent j = new Intent(this, ChatActivity.class);
+        startActivity(j);*/
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("nickName", postContact.getName());
+        startActivity(intent);
     }
 }

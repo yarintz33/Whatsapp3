@@ -1,7 +1,10 @@
 package com.example.whatsapp3.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,7 +19,11 @@ import com.example.whatsapp3.Post;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.SampleViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
@@ -33,7 +40,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        TextView userNickname = (TextView)findViewById(R.id.contactItemNickname);
 
         String username = "Maayan";
 
@@ -59,9 +66,7 @@ public class ChatActivity extends AppCompatActivity {
 //        FloatingActionButton addBtn = findViewById(R.id.addBtn);
    //     viewModel = new ViewModelProvider(this).get(SampleViewModel.class);
         // foo is the updated string.. we set the string as the title (on top of the activity page)
-
-
-        //     viewModel.getDate().observe(this, date -> getSupportActionBar().setTitle(date));
+//        viewModel.getDate().observe(this, date -> getSupportActionBar().setTitle(date));
 
         //FloatingActionButton btnAdd = findViewById(R.id.addBtn);
 //        addBtn.setOnClickListener(view -> {
@@ -72,30 +77,34 @@ public class ChatActivity extends AppCompatActivity {
 //        });
 
 
-/*        posts = new ArrayList<>();
-        ListView lvPost = findViewById(R.id.lvPosts);
-        adapter = new ArrayAdapter<Post>(this, android.R.layout.simple_list_item_1,posts);
-        lvPost.setAdapter(adapter);
-        lvPost.setOnItemLongClickListener((adapterView, view, i, l) -> {
-
-             Post post = posts.remove(i);
-             postDao.delete(post);
-             adapter.notifyDataSetChanged();
-             return true;
- });*/
+//        posts = new ArrayList<>();
+//        ListView lvPost = findViewById(R.id.lvPosts);
+//        adapter = new ArrayAdapter<Post>(this, android.R.layout.simple_list_item_1,posts);
+//        lvPost.setAdapter(adapter);
+//        lvPost.setOnItemLongClickListener((adapterView, view, i, l) -> {
+//
+//             Post post = posts.remove(i);
+//             postDao.delete(post);
+//             adapter.notifyDataSetChanged();
+//             return true;
+// });
         /*lvPost.setOnItemClickListener(view -> {
 
         });*/
 
+        Intent incomingIntent = getIntent();
+        String incomingNickName = incomingIntent.getStringExtra("nickName");
+
+        userNickname.setText(incomingNickName);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        /*posts.clear();
-        posts.addAll(postDao.index());
-        adapter.notifyDataSetChanged();*/
+//        posts.clear();
+//        posts.addAll(postDao.index());
+//        adapter.notifyDataSetChanged();
 
     }
 }
