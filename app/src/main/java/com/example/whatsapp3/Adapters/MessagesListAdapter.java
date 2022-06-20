@@ -83,5 +83,5 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
         this.contacts.add(contact);
         notifyDataSetChanged();
     }*/
-    public List<Message> getPosts() {return messages;}
+    public List<Message> getmessages() {return messages;}
 }

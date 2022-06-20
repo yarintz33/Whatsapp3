@@ -19,11 +19,16 @@ import com.example.whatsapp3.Adapters.MessagesListAdapter;
 import com.example.whatsapp3.AppDataBase;
 import com.example.whatsapp3.Message;
 import com.example.whatsapp3.MessagesViewModel;
+import com.example.whatsapp3.MyService2;
 import com.example.whatsapp3.Post;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.SampleViewModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
@@ -47,10 +52,18 @@ public class ChatActivity extends AppCompatActivity {
         String username = "Maayan";
 
 
+        Intent incomingIntent = getIntent();
+
+         incomingNickName = incomingIntent.getStringExtra("nickName");
+
+        incomingId = incomingIntent.getStringExtra("id");
+
         messagesViewModel = new ViewModelProvider(this).get(MessagesViewModel.class);
         messagesViewModel.setContatId(username);
         db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
+
+        MyService2.messages = messagesViewModel;
 
         postDao = db.postDao();
 
@@ -74,12 +87,14 @@ public class ChatActivity extends AppCompatActivity {
 
 
         RecyclerView messagesList = findViewById(R.id.messagesList);
+
         final MessagesListAdapter adapter = new MessagesListAdapter(this); ///// ,this)
         messagesList.setAdapter(adapter);
         messagesList.setLayoutManager(new LinearLayoutManager(this));
 
         messagesViewModel.get().observe(this, messages -> {
                     adapter.setPosts(messages);
+                    //MyService2.messages = messagesViewModel;
 
                 });
         //handlePosts();
@@ -112,10 +127,7 @@ public class ChatActivity extends AppCompatActivity {
 
         });*/
 
-        Intent incomingIntent = getIntent();
-        incomingNickName = incomingIntent.getStringExtra("nickName");
 
-        incomingId = incomingIntent.getStringExtra("id");
 
         userNickname.setText(incomingNickName);
 
@@ -132,11 +144,11 @@ public class ChatActivity extends AppCompatActivity {
     public void sendMessage(String message)
     {
         Log.d("Info", incomingId);
-        //Log.d("Info", message);
-        //Date date = (Date) Calendar.getInstance().getTime();
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        //String strDate = dateFormat.format(date);
-        messagesViewModel.add(new Message(message),incomingId);
+        Log.d("Info", message);
+        Date date = (Date) Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        messagesViewModel.add(new Message(0,message, strDate,true),incomingId, true);
     }
 }
 

@@ -51,23 +51,25 @@ public class MessageApi {
             }
         });
     }
-    public void add(MutableLiveData<List<Message>> messages, Message message, String contactId){
+    public void add(MutableLiveData<List<Message>> messages, Message message, String contactId, boolean addFlag){
         List<Message> messagesList=  messages.getValue();
         messagesList.add(message);
         messages.postValue(messagesList);
-        Call<Message> call = serverMessageApi.createMessage(message, contactId);
-        call.enqueue(new Callback<Message>() {
-            @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
+        if(addFlag) {
+            Call<Message> call = serverMessageApi.createMessage(message, contactId);
+            call.enqueue(new Callback<Message>() {
+                @Override
+                public void onResponse(Call<Message> call, Response<Message> response) {
 
 
-            }
+                }
 
-            @Override
-            public void onFailure(Call<Message> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Message> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
 }
