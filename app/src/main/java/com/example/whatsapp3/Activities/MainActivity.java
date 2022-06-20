@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
             else{
-                TVerrorMessage.setText( "username and/or password are incorrect\n");
+                TVerrorMessage.setText( "username and/or password are incorrect \n");
             }
         });
 
