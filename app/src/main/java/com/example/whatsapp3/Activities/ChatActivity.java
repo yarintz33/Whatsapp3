@@ -2,8 +2,11 @@ package com.example.whatsapp3.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,16 +17,13 @@ import androidx.room.Room;
 
 import com.example.whatsapp3.Adapters.MessagesListAdapter;
 import com.example.whatsapp3.AppDataBase;
+import com.example.whatsapp3.Message;
 import com.example.whatsapp3.MessagesViewModel;
 import com.example.whatsapp3.Post;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.SampleViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
@@ -34,6 +34,8 @@ public class ChatActivity extends AppCompatActivity {
     private List<Post> posts;
     private ArrayAdapter<Post> adapter;
     private SampleViewModel viewModel;
+    private String incomingNickName;
+    private String incomingId;
 
     @Override
 
@@ -51,6 +53,24 @@ public class ChatActivity extends AppCompatActivity {
                 .allowMainThreadQueries().build();
 
         postDao = db.postDao();
+
+        EditText editText = (EditText) findViewById(R.id.writeMessage);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    sendMessage(v.getText().toString());
+                    handled = true;
+                }
+                return handled;
+            }
+        });
+
+
+
+
+
 
 
         RecyclerView messagesList = findViewById(R.id.messagesList);
@@ -93,7 +113,9 @@ public class ChatActivity extends AppCompatActivity {
         });*/
 
         Intent incomingIntent = getIntent();
-        String incomingNickName = incomingIntent.getStringExtra("nickName");
+        incomingNickName = incomingIntent.getStringExtra("nickName");
+
+        incomingId = incomingIntent.getStringExtra("id");
 
         userNickname.setText(incomingNickName);
 
@@ -106,6 +128,15 @@ public class ChatActivity extends AppCompatActivity {
 //        posts.addAll(postDao.index());
 //        adapter.notifyDataSetChanged();
 
+    }
+    public void sendMessage(String message)
+    {
+        Log.d("Info", incomingId);
+        //Log.d("Info", message);
+        //Date date = (Date) Calendar.getInstance().getTime();
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        //String strDate = dateFormat.format(date);
+        messagesViewModel.add(new Message(message),incomingId);
     }
 }
 

@@ -27,6 +27,6 @@ public class MessagesViewModel extends ViewModel {
     // public LiveData<List<PostContact>> get(){return contacts;}
     public LiveData<List<Message>> get() {return  messages;}
 
-    public  void add(Message message){ repository.add(message);}
+    public  void add(Message message, String contactName){ repository.add(message, contactName);}
 
 }

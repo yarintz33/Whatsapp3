@@ -75,6 +75,10 @@
             android:layout_weight="5"
             android:background="@color/background" />
 
+        <!--<com.stfalcom.chatkit.messages.MessageInput
+
+            ></com.stfalcom.chatkit.messages.MessageInput>
+       -->
         <EditText
             android:id="@+id/writeMessage"
             android:layout_width="match_parent"

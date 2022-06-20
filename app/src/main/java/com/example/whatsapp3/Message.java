@@ -18,7 +18,9 @@ public class Message {
         this.created = created;
         this.sent = sent;
     }
-
+    public Message(String content){
+        this.content = content;
+    }
     public int getId() {
         return id;
     }

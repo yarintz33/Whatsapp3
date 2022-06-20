@@ -17,10 +17,14 @@ import com.example.whatsapp3.Message;
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Token;
 import com.example.whatsapp3.User;
 import com.example.whatsapp3.api.MessageApi;
 import com.example.whatsapp3.api.PostContactApi;
+import com.example.whatsapp3.api.TokenApi;
 import com.example.whatsapp3.api.UserApi;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
@@ -58,6 +62,13 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         //viewModel = new ViewModelProvider(this).get(MessageViewModel.calss);
         viewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
 
+        PostContact pc = new PostContact("Maayan", "bdika", "", "", "localhost:5286");
+
+        FloatingActionButton saveBtn = findViewById(R.id.addBtn);
+        saveBtn.setOnClickListener(view -> {
+             viewModel.add(pc);
+        });
+
 
         messageApi = new MessageApi();
         userApi = new UserApi();
@@ -66,7 +77,6 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         final ContactsListAdapter adapter = new ContactsListAdapter(this, this);
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
-        PostContact pc = new PostContact("addContact..", "bdika", "", "", "localhost:5286");
         User newUser = new User("Yarin","1234", "yerin" );
 
         viewModel.get().observe(this, postContacts -> {
@@ -95,6 +105,7 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         startActivity(j);*/
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("nickName", postContact.getName());
+        intent.putExtra("id", postContact.getId());
         startActivity(intent);
     }
 }

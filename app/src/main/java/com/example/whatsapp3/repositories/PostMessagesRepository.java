@@ -69,8 +69,8 @@ public class PostMessagesRepository extends AppCompatActivity {
     }
     public LiveData<List<Message>> getAll() {return messageListData;}
 
-    public void add(Message message){
-        messageApi.add(messageListData, message, contactId );
+    public void add(Message message, String contactName){
+        messageApi.add(messageListData, message, contactName); // contactId );
     }
 
 }
