@@ -80,12 +80,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
         RecyclerView messagesList = findViewById(R.id.messagesList);
 
         final MessagesListAdapter adapter = new MessagesListAdapter(this); ///// ,this)

@@ -27,7 +27,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/editContact"
+            android:id="@+id/searchUserName"
             android:layout_width="372dp"
             android:layout_height="wrap_content"
             android:autofillHints=""
