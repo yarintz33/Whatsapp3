@@ -27,7 +27,7 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
         private MessageViewHolder(View itemView){
             super(itemView);
             content = itemView.findViewById(R.id.messageContent);
-            id = itemView.findViewById(R.id.messageId);
+//            id = itemView.findViewById(R.id.messageId);
             //message = itemView.findViewById(R.id.ContactItemLatMessage);*/
             //lastdate =
             //profilePic = itemView.findViewById(R.id.profileImage);
@@ -48,7 +48,7 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
 
     @Override
     public MessageViewHolder onCreateViewHolder (ViewGroup parent, int ViewType){
-        View itemView = mInflater.inflate(R.layout.contact_item_layout, parent,false);
+        View itemView = mInflater.inflate(R.layout.single_message, parent,false);
         return  new MessageViewHolder (itemView);
     }
 
