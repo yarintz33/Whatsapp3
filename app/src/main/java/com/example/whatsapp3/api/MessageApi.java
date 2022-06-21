@@ -56,7 +56,7 @@ public class MessageApi {
         messagesList.add(message);
         messages.postValue(messagesList);
         if(addFlag) {
-            Call<Message> call = serverMessageApi.createMessage(message, contactId);
+            Call<Message> call = serverMessageApi.createMessage(message);//, contactId);
             call.enqueue(new Callback<Message>() {
                 @Override
                 public void onResponse(Call<Message> call, Response<Message> response) {

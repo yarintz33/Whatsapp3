@@ -41,7 +41,7 @@ public class PostContactApi {
         call.enqueue(new Callback<List<PostContact>>() {
             @Override
             public void onFailure(Call<List<PostContact>> call, Throwable t) {
-            }
+                }
 
             @Override
             public void onResponse(Call<List<PostContact>> call, Response<List<PostContact>> response) {

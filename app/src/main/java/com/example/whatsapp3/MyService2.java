@@ -1,5 +1,7 @@
 package com.example.whatsapp3;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -14,7 +16,7 @@ public class MyService2 extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
-
+        Log.d("Info", "bla");
         messages.add(new Message(message.getData().get("content")),message.getData().get("from"), false);
         int a = 1;
     }

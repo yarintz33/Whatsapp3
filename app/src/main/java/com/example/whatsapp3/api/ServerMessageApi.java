@@ -19,8 +19,8 @@ public interface ServerMessageApi {
     @GET("contacts/{contactId}/messages/{id}")
     Call<Message> getMessage(@Path("contactId") String contactId,@Path("id") String id);
 
-    @POST("contacts/{contactId}/messages")
-    Call<Message> createMessage(@Body Message message, @Path("contactId") String contactId);
+    @POST("transfer")
+    Call<Message> createMessage(@Body Message message);//, @Path("contactId") String contactId);
 
     @DELETE("contacts/{contactId}/messages/{id}")
     Call<Void> deleteMessage(@Path("contactId") String contactId,@Path("id") String id);

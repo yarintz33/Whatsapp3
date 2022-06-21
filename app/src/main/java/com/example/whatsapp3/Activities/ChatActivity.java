@@ -148,7 +148,9 @@ public class ChatActivity extends AppCompatActivity {
         Date date = (Date) Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
-        messagesViewModel.add(new Message(0,message, strDate,true),incomingId, true);
+//        messagesViewModel.add(new Message(0,message, strDate,true),incomingId, true);
+        messagesViewModel.add(new Message(message,"Yarin","Yarin"),incomingId, true);
+
     }
 }
 

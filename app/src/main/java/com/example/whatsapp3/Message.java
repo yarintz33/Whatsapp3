@@ -11,18 +11,42 @@ public class Message {
     private String content;
     private String created;
     boolean sent;
-
+    private String from;
+    private String to;
     public Message(int id, String content, String created, boolean sent) {
         this.id = id;
         this.content = content;
         this.created = created;
         this.sent = sent;
+
     }
     public Message(String content){
         this.content = content;
     }
     public int getId() {
         return id;
+    }
+
+    public Message(String content, String from, String to) {
+        this.content = content;
+        this.from = from;
+        this.to = to;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 
     public void setId(int id) {
