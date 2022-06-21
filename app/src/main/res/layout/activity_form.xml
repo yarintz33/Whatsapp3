@@ -23,7 +23,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/search_username"
+            android:text="@string/search_contact"
             android:textSize="24sp" />
 
         <EditText
@@ -33,6 +33,26 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/usernameHint"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/searchNickname"
+            android:layout_width="372dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/nickname"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/searchServer"
+            android:layout_width="372dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/server_number"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
