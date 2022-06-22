@@ -11,7 +11,6 @@ import androidx.room.Room;
 import com.example.whatsapp3.AppDataBase;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class FormActivity extends AppCompatActivity {
 
@@ -36,11 +35,15 @@ public class FormActivity extends AppCompatActivity {
 
         Button saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(view -> {
+
+
             Intent intent = new Intent(this, ContactsList.class);
             intent.putExtra("lastActivity", "FormActivity");
             EditText nickName =  (EditText) findViewById(R.id.searchNickname);
             EditText userName =  (EditText) findViewById(R.id.searchUserName);
             EditText server =  (EditText) findViewById(R.id.searchServer);
+
+            //userApi.checkRegister(user, userName.getText().toString())
 
             intent.putExtra("nickName", nickName.getText().toString());
             intent.putExtra("id", userName.getText().toString());

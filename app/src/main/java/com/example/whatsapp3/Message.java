@@ -13,10 +13,10 @@ public class Message {
     boolean sent;
     private String from;
     private String to;
-    public Message(int id, String content, String created, boolean sent) {
-        this.id = id;
+    public Message(String content, boolean sent) {
+
         this.content = content;
-        this.created = created;
+        //this.created = created;
         this.sent = sent;
 
     }

@@ -2,6 +2,7 @@ package com.example.whatsapp3.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivityBinding = ActivityMainBinding.inflate(getLayoutInflater());
         user = new MutableLiveData<>();
-
+        //user.setValue(new User("0", "", ""));
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, instanceIdResult -> {
             token = instanceIdResult.getToken();
             //tokenApi = new TokenApi();
@@ -42,25 +43,41 @@ public class MainActivity extends AppCompatActivity {
         userApi = new UserApi();
         EditText username = findViewById(R.id.editTextLoginPersonName);
         EditText password = findViewById(R.id.editTextLoginPassword);
+
         TextView TVerrorMessage = findViewById(R.id.loginErrorMessage);
         // Post post = new Post(0,editContact.getText().toString());
         //PostApi postApi = new PostApi();
         //postApi.get();
+        MutableLiveData<User> logedInUser = user;
 
+
+        user.observe(this, User -> {
+            if(User!= null){
+                if (!User.getId().equals("")) {
+//                    Log.d("Info", user.getValue().getName());
+                    Intent i = new Intent(this, ContactsList.class);
+                    startActivity(i);
+                } else {
+                    TVerrorMessage.setText("username and/or password are incorrect \n");
+                }
+            }
+        });
 
         MainActivityBinding.loginBtn.setOnClickListener(view -> {
+if(user.getValue() == null){
+    Log.d("Info","user.getValue());");
 
-            userApi.signIn(username.getText().toString());
-            //wait;
-            userApi.get(user, username.getText().toString(), password.getText().toString());
-            if(user != null){
+}
+            if(username.getText().toString().equals("") || password.getText().toString().equals("")){
+                TVerrorMessage.setText("please enter username and password\n");
+            }else{
+                userApi.signIn(username.getText().toString());
+                //wait;
+                userApi.get(user, username.getText().toString(), password.getText().toString());
+            }
+            /*while(user.getValue() == null) {
+            }*/
 
-                Intent i = new Intent(this, ContactsList.class);
-                startActivity(i);
-            }
-            else{
-                TVerrorMessage.setText( "username and/or password are incorrect \n");
-            }
         });
 
         MainActivityBinding.SignInBtn.setOnClickListener(view -> {

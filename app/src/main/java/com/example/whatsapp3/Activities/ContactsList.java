@@ -58,7 +58,6 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         });
 
 
-
         messages = new MutableLiveData<>();
         db = Room.databaseBuilder(getApplicationContext(), com.example.whatsapp3.AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
@@ -127,11 +126,14 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
 //        viewModel.add(pc);
         /* Intent j = new Intent(this, ChatActivity.class);
         startActivity(j);*/
-        Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra("nickName", postContact.getName());
-        intent.putExtra("id", postContact.getId());
+        if(viewModel.get().getValue().size() > 0) {
+            Intent intent = new Intent(this, ChatActivity.class);
+            intent.putExtra("nickName", postContact.getName());
+            intent.putExtra("id", postContact.getId());
+
         //intent.putExtra("contact", po  stContact);
-        startActivity(intent);
+            startActivity(intent);
+        }
     }
 
 

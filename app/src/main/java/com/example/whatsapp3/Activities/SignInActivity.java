@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.User;
@@ -16,12 +17,13 @@ public class SignInActivity extends AppCompatActivity {
        // private TextView errorMessage;
 //    private String errorMessage;
     private UserApi userApi;
+    private MutableLiveData<User> user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_sign_in);
-
+        user = new MutableLiveData<>();
         EditText username = findViewById(R.id.editTextRegisterPersonName);
         EditText password = findViewById(R.id.editTextPassword);
         EditText confirmPassword = findViewById(R.id.editTextConfirmPassword);
@@ -41,13 +43,28 @@ public class SignInActivity extends AppCompatActivity {
             }
             else if(nickname.getText().toString().length() < 3){
                 errorMessage.setText( "A nickname must be at least 3 characters.");
-            }else if (password.getText().toString() != confirmPassword.getText().toString()) {
+            }else if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
                 errorMessage.setText("The passwords don't match\n");
             }else{
                 //if(username doesent exist...){
-                userApi.post(new User(username.getText().toString(), password.getText().toString(), nickname.getText().toString()));
-                Intent i = new Intent(this, ChatActivity.class);
-                startActivity(i);
+                userApi.checkRegister(user,username.getText().toString());
+
+
+
+
+                if(user.getValue()==null){
+
+
+
+
+
+                    userApi.post(new User(username.getText().toString(), password.getText().toString(), nickname.getText().toString()));
+                    Intent i = new Intent(this,MainActivity.class);
+                    startActivity(i);
+                }else{
+                    errorMessage.setText("Username already exist!\n");
+                }
+
                 //}
             }
 

@@ -2,7 +2,6 @@ package com.example.whatsapp3.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,9 +62,13 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         if (messages != null){
             final  Message current = messages.get(position);
-            if (current.getFrom().equals("Yarin")){
+            if (!current.isSent()){
                 holder.card.setBackgroundColor(Color.GRAY);
                 holder.content.setGravity(5);
+            }
+            else{
+                holder.card.setBackgroundColor(Color.GREEN);
+                holder.content.setGravity(0);
             }
             holder.content.setText(current.getContent());
             int p = position;
