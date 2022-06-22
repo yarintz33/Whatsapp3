@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.myApplication;
 
 import java.util.List;
@@ -26,7 +27,8 @@ public class PostContactApi {
 //  this.dao = dao;
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+//                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(Settings.serverNum)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serverContactApi = retrofit.create(ServerContactApi.class);

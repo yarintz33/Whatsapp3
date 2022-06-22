@@ -16,4 +16,6 @@
     <string name="write_a_message">write a message..</string>
     <string name="server_number">Server number</string>
     <string name="search_contact">Search Contact</string>
+    <string name="change_server_number">Change server number:</string>
+    <string name="save">save</string>
 </resources>

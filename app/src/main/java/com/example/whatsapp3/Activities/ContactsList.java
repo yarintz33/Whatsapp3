@@ -17,6 +17,7 @@ import com.example.whatsapp3.Message;
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.Token;
 import com.example.whatsapp3.User;
 import com.example.whatsapp3.api.MessageApi;
@@ -73,6 +74,11 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
             Intent i = new Intent(this, FormActivity.class);
             startActivity(i);
         });
+        FloatingActionButton settingsBtn = findViewById(R.id.settings);
+        settingsBtn.setOnClickListener(view -> {
+            Intent i = new Intent(this, Settings.class);
+            startActivity(i);
+        });
 
 
 
@@ -91,8 +97,6 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
                // viewModel.add(pc);
             }
             flag++;
-
-
         });
 
         Intent mIntent = getIntent();

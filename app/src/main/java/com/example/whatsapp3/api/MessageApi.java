@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.Message;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.myApplication;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class MessageApi {
     public MessageApi() {
 //  this.postListData = postListData;
 //  this.dao = dao;
-
         retrofit = new Retrofit.Builder()
-                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(Settings.serverNum)
+//                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serverMessageApi = retrofit.create(ServerMessageApi.class);
