@@ -10,14 +10,19 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.User;
+import com.example.whatsapp3.api.TokenApi;
 import com.example.whatsapp3.api.UserApi;
 import com.example.whatsapp3.databinding.ActivityMainBinding;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainActivity extends AppCompatActivity {
 
     private String errorMessage = "";
     private MutableLiveData<User> user = null;
     private UserApi userApi;
+    private TokenApi tokenApi;
+    private String token;
+
     private ActivityMainBinding MainActivityBinding;
 
     @Override
@@ -26,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivityBinding = ActivityMainBinding.inflate(getLayoutInflater());
         user = new MutableLiveData<>();
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, instanceIdResult -> {
+            token = instanceIdResult.getToken();
+            //tokenApi = new TokenApi();
+           // tokenApi.post(new Token("Yarin", instanceIdResult.getToken()));
+        });
+
         setContentView(MainActivityBinding.getRoot());
         userApi = new UserApi();
         EditText username = findViewById(R.id.editTextLoginPersonName);

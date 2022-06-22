@@ -141,6 +141,7 @@ public class ChatActivity extends AppCompatActivity {
 //        adapter.notifyDataSetChanged();
 
     }
+
     public void sendMessage(String message)
     {
         Log.d("Info", incomingId);
