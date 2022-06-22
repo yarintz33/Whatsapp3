@@ -23,7 +23,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         private TextView name;
         private TextView id;
         private TextView message;
-        private TextView lasdate;
+        private TextView lastdate;
         private ShapeableImageView profilePic;
         public CardView cardView;
         private ContactViewHolder(View itemView){
@@ -31,7 +31,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             name = itemView.findViewById(R.id.contactItemNickname);
 //            id = itemView.findViewById(R.id.messageId);
             message = itemView.findViewById(R.id.ContactItemLatMessage);
-            //lastdate =
+            lastdate = itemView.findViewById(R.id.timeOFLastMessage);
             profilePic = itemView.findViewById(R.id.profileImage);
             cardView = itemView.findViewById(R.id.contactCardInList);
         }
