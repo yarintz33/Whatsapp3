@@ -5,17 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings"
-    android:background="@color/background">
+    android:id="@+id/settingsPage"
+    android:background="@color/background"
+    android:layout_gravity="center">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_width="378dp"
+        android:layout_height="346dp"
         android:layout_margin="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.462">
 
 
         <TextView
@@ -23,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/change_server_number"
+            android:textColor="#938F8F"
             android:textSize="24sp" />
 
         <EditText
@@ -31,6 +37,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
+            android:textColor="#938F8F"
             android:hint="server number"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
@@ -40,6 +47,8 @@
             android:id="@+id/serverErrorMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#938F8F"
+
             android:text="" />
 
         <Button
@@ -48,6 +57,46 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/save" />
+
+
+        <TextView
+            android:id="@+id/ChangeMode"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="Change Mode:"
+            android:textSize="24sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="120dp"
+            tools:layout_editor_absoluteY="452dp"
+            android:textColor="#938F8F"
+            />
+
+        <Button
+            android:id="@+id/darkMode"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Dark Mode"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="80dp"
+
+            tools:layout_editor_absoluteY="511dp" />
+
+        <Button
+            android:id="@+id/lightMode"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Light Mode"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="211dp"
+            tools:layout_editor_absoluteY="511dp" />
+
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

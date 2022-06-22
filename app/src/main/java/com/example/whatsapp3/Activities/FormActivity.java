@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.whatsapp3.AppDataBase;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Settings;
 
 public class FormActivity extends AppCompatActivity {
 
@@ -20,6 +24,10 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+
+        ConstraintLayout background = findViewById(R.id.formActivityPage);
+        background.setBackgroundColor(Settings.backgroundColor);
+
 
         db = Room.databaseBuilder(getApplicationContext(), com.example.whatsapp3.AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
@@ -51,5 +59,12 @@ public class FormActivity extends AppCompatActivity {
 //            intent.putExtra("contact", postContact);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ConstraintLayout background = findViewById(R.id.formActivityPage);
+        background.setBackgroundColor(Settings.backgroundColor);
     }
 }

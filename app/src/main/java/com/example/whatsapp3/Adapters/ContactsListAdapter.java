@@ -31,7 +31,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             name = itemView.findViewById(R.id.contactItemNickname);
 //            id = itemView.findViewById(R.id.messageId);
             last = itemView.findViewById(R.id.ContactItemLatMessage);
-            //lastdate =
+            lastdate = itemView.findViewById(R.id.timeOFLastMessage);
             profilePic = itemView.findViewById(R.id.profileImage);
             cardView = itemView.findViewById(R.id.contactCardInList);
         }
@@ -59,7 +59,6 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         if (contacts != null){
             final  PostContact current = contacts.get(position);
             holder.name.setText(current.getName());
-            holder.last.setText(current.getLast());
             int p = position;
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

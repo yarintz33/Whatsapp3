@@ -52,6 +52,10 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
 
+        RecyclerView contactsList = findViewById(R.id.contactsList);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
+
+
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ContactsList.this, instanceIdResult -> {
             token = instanceIdResult.getToken();
             tokenApi = new TokenApi();
@@ -85,7 +89,6 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         messageApi = new MessageApi();
         userApi = new UserApi();
         postContactApi = new PostContactApi();
-        RecyclerView contactsList = findViewById(R.id.contactsList);
         final ContactsListAdapter adapter = new ContactsListAdapter(this, this);
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
@@ -123,7 +126,8 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
     @Override
     protected void onResume() {
         super.onResume();
-
+        RecyclerView contactsList = findViewById(R.id.contactsList);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
     }
 
     @Override
