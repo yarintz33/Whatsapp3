@@ -1,5 +1,7 @@
 package com.example.whatsapp3.api;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.R;
@@ -53,23 +55,39 @@ public class UserApi {
         call.enqueue(new Callback<User>() {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                Log.d("Info","failure");
                 logedInUser.setValue(null);
             }
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+                Log.d("Info","success");
                 logedInUser.setValue(response.body());
                 // List<PostContact> posts = response.body();
 
             }
         });
     }
+    public void checkRegister(MutableLiveData<User> logedInUser, String username){
+        Call<User> call = serverUserApi.registerGetUser(username);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                logedInUser.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+    }
+
     public void post(User newUser){
         Call<User> call = serverUserApi.createUser(newUser);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
             }
 
             @Override

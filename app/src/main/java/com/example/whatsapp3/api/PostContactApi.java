@@ -1,5 +1,7 @@
 package com.example.whatsapp3.api;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.PostContact;
@@ -30,11 +32,15 @@ public class PostContactApi {
                 .build();
         serverContactApi = retrofit.create(ServerContactApi.class);
     }
+
     public void add(MutableLiveData<List<PostContact>> contactsListData, PostContact newContact){
-        post(newContact);
+
         List<PostContact> contacts=  contactsListData.getValue();
-        contacts.add(newContact);
-        contactsListData.postValue(contacts);
+        if(! isThisIdInList(contacts, newContact.getId())){
+            contacts.add(newContact);
+            contactsListData.postValue(contacts);
+            post(newContact);
+        }
     }
 
     public void get(MutableLiveData<List<PostContact>> contactsListData) {
@@ -57,14 +63,22 @@ public class PostContactApi {
         call.enqueue(new Callback<PostContact>() {
             @Override
             public void onResponse(Call<PostContact> call, Response<PostContact> response) {
-
+                Log.d("Info","respone (new contact)!");
             }
 
             @Override
             public void onFailure(Call<PostContact> call, Throwable t) {
-
+                Log.d("Info","elready exist!");
             }
         });
     }
 
+    public boolean isThisIdInList(List<PostContact> list, String id){
+        for(int i=0; i< list.size(); i++){
+            if(list.get(i).getId().equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

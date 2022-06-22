@@ -15,6 +15,9 @@ public interface ServerUserApi {
         @GET("login/{username}/{password}")
         Call<User> getUser(@Path("username") String username, @Path("password") String password);
 
+        @GET("registerCheck/{username}")
+        Call<User> registerGetUser(@Path("username") String username);
+
         @POST("register")
         Call<User> createUser(@Body User user);
 
