@@ -35,6 +35,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private MessagesViewModel messagesViewModel;
     private PostDao postDao;
+    private EditText textBar;
     private AppDataBase db;
     private List<Post> posts;
     private ArrayAdapter<Post> adapter;
@@ -59,7 +60,7 @@ public class ChatActivity extends AppCompatActivity {
         incomingId = incomingIntent.getStringExtra("id");
 
         messagesViewModel = new ViewModelProvider(this).get(MessagesViewModel.class);
-        messagesViewModel.setContatId(username);
+        messagesViewModel.setContatId(incomingId);
         db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
 

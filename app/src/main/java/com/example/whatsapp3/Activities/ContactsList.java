@@ -93,6 +93,9 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
 
         viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
+            for(PostContact con :postContacts){
+               // Log.d("Info",con.getLast());
+            }
             if(flag == 1){
                // viewModel.add(pc);
             }
