@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.User;
 import com.example.whatsapp3.api.UserApi;
 import com.example.whatsapp3.databinding.ActivityMainBinding;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Settings.setServerNum("http://10.0.2.2:5286/api/");
+
         super.onCreate(savedInstanceState);
 
         MainActivityBinding = ActivityMainBinding.inflate(getLayoutInflater());

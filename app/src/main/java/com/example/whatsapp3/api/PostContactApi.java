@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.PostContact;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.myApplication;
 
 import java.util.List;

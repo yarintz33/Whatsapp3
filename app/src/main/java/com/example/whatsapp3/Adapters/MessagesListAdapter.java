@@ -63,7 +63,7 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         if (messages != null){
             final  Message current = messages.get(position);
-            if (current.getFrom().equals("Yarin")){
+            if (current != null && current.getFrom().equals("Yarin")){
                 holder.card.setBackgroundColor(Color.GRAY);
                 holder.content.setGravity(5);
             }

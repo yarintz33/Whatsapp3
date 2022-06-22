@@ -2,6 +2,7 @@ package com.example.whatsapp3.api;
 
 import com.example.whatsapp3.Post;
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.myApplication;
 
 
