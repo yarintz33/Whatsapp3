@@ -64,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MainActivityBinding.SignInBtn.setOnClickListener(view -> {
-            Intent j = new Intent(this, SignInActivity.class);
-            startActivity(j);
+
+            Intent intent = new Intent(this, SignInActivity.class);
+            intent.putExtra("lastActivity", "MainActivity");
+            startActivity(intent);
         });
 
         /*FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, instanceIdResult -> {

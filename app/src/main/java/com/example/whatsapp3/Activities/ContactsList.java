@@ -42,6 +42,10 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
     private PostContactApi postContactApi;
     private UserApi userApi;
     private MessageApi messageApi;
+    private String incomingNickName;
+    private String incomingId;
+    private String incomingServerNumber;
+    private int enter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +70,11 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
 
         FloatingActionButton saveBtn = findViewById(R.id.addBtn);
         saveBtn.setOnClickListener(view -> {
-             viewModel.add(pc);
+//             viewModel.add(pc);
+            Intent i = new Intent(this, FormActivity.class);
+            startActivity(i);
         });
+
 
 
         messageApi = new MessageApi();
@@ -88,11 +95,28 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
 
 
         });
+
+        Intent mIntent = getIntent();
+        String previousActivity= mIntent.getStringExtra("lastActivity");
+//        String activity = mIntent.getStringExtra("activity");
+
+        if (previousActivity!= null && previousActivity.equals("FormActivity")){
+//            Intent incomingIntent = getIntent();
+            incomingNickName = mIntent.getStringExtra("nickName");
+            incomingId = mIntent.getStringExtra("id");
+            incomingServerNumber = mIntent.getStringExtra("server");
+            PostContact contact = new PostContact(incomingId, incomingNickName, "", "", incomingServerNumber);
+            viewModel.add(contact);
+        }
     //postContactApi.post(pc);
     //userApi.post(newUser);
         //messageApi.get(messages, "Maayan");
         int i = 0;
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 
@@ -106,7 +130,9 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("nickName", postContact.getName());
         intent.putExtra("id", postContact.getId());
-        //intent.putExtra("contact", postContact);
+        //intent.putExtra("contact", po  stContact);
         startActivity(intent);
     }
+
+
 }

@@ -1,12 +1,16 @@
 package com.example.whatsapp3.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whatsapp3.Message;
@@ -22,12 +26,15 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
         private TextView content;
         private TextView message;
         private TextView lasdate;
+        private CardView card;
+        private LinearLayout layout;
 
         //public CardView cardView;
         private MessageViewHolder(View itemView){
             super(itemView);
             content = itemView.findViewById(R.id.messageContent);
-            id = itemView.findViewById(R.id.messageId);
+            card = itemView.findViewById(R.id.messageCard);
+//            id = itemView.findViewById(R.id.messageId);
             //message = itemView.findViewById(R.id.ContactItemLatMessage);*/
             //lastdate =
             //profilePic = itemView.findViewById(R.id.profileImage);
@@ -48,7 +55,7 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
 
     @Override
     public MessageViewHolder onCreateViewHolder (ViewGroup parent, int ViewType){
-        View itemView = mInflater.inflate(R.layout.contact_item_layout, parent,false);
+        View itemView = mInflater.inflate(R.layout.single_message, parent,false);
         return  new MessageViewHolder (itemView);
     }
 
@@ -56,6 +63,10 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         if (messages != null){
             final  Message current = messages.get(position);
+            if (current.getFrom().equals("Yarin")){
+                holder.card.setBackgroundColor(Color.GRAY);
+                holder.content.setGravity(5);
+            }
             holder.content.setText(current.getContent());
             int p = position;
             /*holder.cardView.setOnClickListener(new View.OnClickListener() {

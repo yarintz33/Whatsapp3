@@ -16,7 +16,6 @@ public class PostContact {
 
     //private Image profilePic;
 
-
     public String getServer() {
         return server;
     }
