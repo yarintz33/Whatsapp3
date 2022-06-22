@@ -80,6 +80,7 @@ public class ChatActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     sendMessage(v.getText().toString());
                     handled = true;
+                    editText.setText("");
                 }
                 return handled;
             }
@@ -151,7 +152,7 @@ public class ChatActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
 //        messagesViewModel.add(new Message(0,message, strDate,true),incomingId, true);
-        messagesViewModel.add(new Message(message,"Yarin","Yarin"),incomingId, true);
+        messagesViewModel.add(new Message(message,true,MainActivity.logedInUsername ,incomingId ),incomingId, true);
 
     }
 }

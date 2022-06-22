@@ -33,6 +33,13 @@ public class Message {
         this.to = to;
     }
 
+    public Message(String content, boolean sent, String from, String to) {
+        this.content = content;
+        this.sent = sent;
+        this.from = from;
+        this.to = to;
+    }
+
     public String getFrom() {
         return from;
     }
