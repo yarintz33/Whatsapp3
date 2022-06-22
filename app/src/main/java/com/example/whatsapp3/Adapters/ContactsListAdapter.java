@@ -59,6 +59,8 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         if (contacts != null){
             final  PostContact current = contacts.get(position);
             holder.name.setText(current.getName());
+            holder.last.setText(current.getLast());
+            holder.lastdate.setText(current.getLastdate());
             int p = position;
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
