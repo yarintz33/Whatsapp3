@@ -36,6 +36,12 @@
             android:minHeight="48dp" />
 
 
+        <TextView
+            android:id="@+id/serverErrorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
         <Button
             android:id="@+id/saveServerNum"
             android:layout_width="wrap_content"

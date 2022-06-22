@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        Settings.setServerNum("http://10.0.2.2:5286/api/");
+        Settings.setServerNum("http://10.0.2.2:5286/api/");
 
         super.onCreate(savedInstanceState);
 

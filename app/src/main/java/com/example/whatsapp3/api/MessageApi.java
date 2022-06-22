@@ -24,7 +24,8 @@ public class MessageApi {
 //  this.postListData = postListData;
 //  this.dao = dao;
         retrofit = new Retrofit.Builder()
-                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(Settings.serverNum)
+//                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serverMessageApi = retrofit.create(ServerMessageApi.class);

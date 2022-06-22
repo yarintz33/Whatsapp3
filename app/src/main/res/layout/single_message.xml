@@ -8,10 +8,10 @@
 
     <LinearLayout
         android:id="@+id/messageview"
-        android:layout_width="403dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="407dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,13 +19,13 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/messageCard"
-            android:layout_width="403dp"
-            android:layout_height="wrap_content"
+            android:layout_width="392dp"
+            android:layout_height="38dp"
             android:layout_margin="3dp"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:background="@color/white"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -38,8 +38,8 @@
 
             <TextView
                 android:id="@+id/messageContent"
-                android:layout_width="385dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="name"
                 android:textSize="20sp" />
         </androidx.cardview.widget.CardView>

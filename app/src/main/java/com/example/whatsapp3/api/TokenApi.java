@@ -19,7 +19,8 @@ public class TokenApi {
     public TokenApi() {
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+//                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(Settings.serverNum)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serverTokenApi = retrofit.create(ServerTokenApi.class);

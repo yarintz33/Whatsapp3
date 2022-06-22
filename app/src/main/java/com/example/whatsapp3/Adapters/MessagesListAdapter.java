@@ -63,11 +63,11 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
         if (messages != null){
             final  Message current = messages.get(position);
             if (!current.isSent()){
-                holder.card.setBackgroundColor(Color.GRAY);
+                holder.content.setBackgroundColor(Color.GRAY);
                 holder.content.setGravity(5);
             }
             else{
-                holder.card.setBackgroundColor(Color.GREEN);
+                holder.content.setBackgroundColor(Color.WHITE);
                 holder.content.setGravity(0);
             }
             holder.content.setText(current.getContent());

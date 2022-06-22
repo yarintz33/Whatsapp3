@@ -25,7 +25,8 @@ public class UserApi {
 //  this.dao = dao;
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+//                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(Settings.serverNum)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serverUserApi = retrofit.create(ServerUserApi.class);
