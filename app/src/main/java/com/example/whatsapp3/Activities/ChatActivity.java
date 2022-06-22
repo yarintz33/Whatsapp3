@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.example.whatsapp3.Post;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.SampleViewModel;
+import com.example.whatsapp3.Settings;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,6 +50,9 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         TextView userNickname = (TextView)findViewById(R.id.contactItemNickname);
+
+        LinearLayout contactsList = findViewById(R.id.activityChatLayout);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
 
         String username = "Maayan";
 
@@ -133,6 +138,8 @@ public class ChatActivity extends AppCompatActivity {
 //        posts.clear();
 //        posts.addAll(postDao.index());
 //        adapter.notifyDataSetChanged();
+        LinearLayout contactsList = findViewById(R.id.activityChatLayout);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
 
     }
 

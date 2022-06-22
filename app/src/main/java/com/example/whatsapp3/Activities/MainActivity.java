@@ -1,12 +1,14 @@
 package com.example.whatsapp3.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.R;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Settings.setServerNum("http://10.0.2.2:5286/api/");
+        Settings.setBackgroundColor(Color.rgb(234,221,201));
 
         super.onCreate(savedInstanceState);
 
@@ -94,7 +97,6 @@ if(user.getValue() == null){
             String token = instanceIdResult.getToken();
         });*/
     }
-
 
 
 
