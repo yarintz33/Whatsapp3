@@ -87,11 +87,11 @@ if(user.getValue() == null){
             if(username.getText().toString().equals("") || password.getText().toString().equals("")){
                 TVerrorMessage.setText("please enter username and password\n");
             }else{
-                userApi.signIn(user, username.getText().toString());
+                userApi.signIn(user, username.getText().toString(), password.getText().toString());
 //                UserApi userApiBdika = new UserApi(user);
 //                userApiBdika.get(user, username.getText().toString(), password.getText().toString());
                 //wait;
-                userApi.get(user, username.getText().toString(), password.getText().toString());
+                //userApi.get(user, username.getText().toString(), password.getText().toString());
             }
             /*while(user.getValue() == null) {
             }*/
