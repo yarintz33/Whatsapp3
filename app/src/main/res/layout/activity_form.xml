@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Activities.FormActivity"
     android:gravity="center_horizontal"
-    android:background="#EADDC9">
+    android:background="#EADDC9"
+    android:id="@+id/formActivityPage">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_contact"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="#938F8F"/>
 
         <EditText
             android:id="@+id/searchUserName"
@@ -34,7 +37,8 @@
             android:ems="10"
             android:hint="@string/usernameHint"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:textColor="#938F8F"/>
 
         <EditText
             android:id="@+id/searchNickname"
@@ -44,7 +48,8 @@
             android:ems="10"
             android:hint="@string/nickname"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:textColor="#938F8F"/>
 
         <EditText
             android:id="@+id/searchServer"
@@ -54,7 +59,8 @@
             android:ems="10"
             android:hint="@string/server_number"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:textColor="#938F8F"/>
 
 
         <Button

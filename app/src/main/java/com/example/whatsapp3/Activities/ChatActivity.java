@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.example.whatsapp3.Post;
 import com.example.whatsapp3.PostDao;
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.SampleViewModel;
+import com.example.whatsapp3.Settings;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,6 +37,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private MessagesViewModel messagesViewModel;
     private PostDao postDao;
+    private EditText textBar;
     private AppDataBase db;
     private List<Post> posts;
     private ArrayAdapter<Post> adapter;
@@ -49,6 +52,9 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         TextView userNickname = (TextView)findViewById(R.id.contactItemNickname);
 
+        LinearLayout contactsList = findViewById(R.id.activityChatLayout);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
+
         String username = "Maayan";
 
 
@@ -59,7 +65,7 @@ public class ChatActivity extends AppCompatActivity {
         incomingId = incomingIntent.getStringExtra("id");
 
         messagesViewModel = new ViewModelProvider(this).get(MessagesViewModel.class);
-        messagesViewModel.setContatId(username);
+        messagesViewModel.setContatId(incomingId);
         db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "postsDB")
                 .allowMainThreadQueries().build();
 
@@ -134,6 +140,8 @@ public class ChatActivity extends AppCompatActivity {
 //        posts.clear();
 //        posts.addAll(postDao.index());
 //        adapter.notifyDataSetChanged();
+        LinearLayout contactsList = findViewById(R.id.activityChatLayout);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.whatsapp3.Activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.room.Room;
 
 import com.example.whatsapp3.Adapters.ContactsListAdapter;
 import com.example.whatsapp3.AppDataBase;
+import com.example.whatsapp3.ChatAndContactsList;
 import com.example.whatsapp3.ContactsViewModel;
 import com.example.whatsapp3.Message;
 import com.example.whatsapp3.PostContact;
@@ -52,6 +54,16 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
 
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Intent i = new Intent(this, ChatAndContactsList.class);
+            startActivity(i);
+        }
+
+
+        RecyclerView contactsList = findViewById(R.id.contactsList);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
+
+
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ContactsList.this, instanceIdResult -> {
             token = instanceIdResult.getToken();
             tokenApi = new TokenApi();
@@ -85,7 +97,6 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         messageApi = new MessageApi();
         userApi = new UserApi();
         postContactApi = new PostContactApi();
-        RecyclerView contactsList = findViewById(R.id.contactsList);
         final ContactsListAdapter adapter = new ContactsListAdapter(this, this);
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
@@ -93,6 +104,9 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
 
         viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
+            for(PostContact con :postContacts){
+               // Log.d("Info",con.getLast());
+            }
             if(flag == 1){
                // viewModel.add(pc);
             }
@@ -120,7 +134,12 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
     @Override
     protected void onResume() {
         super.onResume();
-
+        RecyclerView contactsList = findViewById(R.id.contactsList);
+        contactsList.setBackgroundColor(Settings.backgroundColor);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Intent i = new Intent(this, ChatAndContactsList.class);
+            startActivity(i);
+        }
     }
 
     @Override

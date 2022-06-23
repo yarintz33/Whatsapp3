@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     tools:context=".Activities.ChatActivity">
 
 
     <LinearLayout
+        android:id="@+id/activityChatLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10"
+        android:background="@color/background"
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
@@ -30,19 +31,21 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="144dp"
+                android:padding="2dp">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profileImage"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:src="@drawable/common_google_signin_btn_icon_dark"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    android:layout_margin="2dp"/>
 
                 <TextView
                     android:id="@+id/contactItemNickname"
@@ -56,6 +59,7 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="@+id/profileImage"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/profileImage"
                     app:layout_constraintTop_toTopOf="@+id/profileImage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -68,17 +72,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="500dp" />-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/messagesList"
-            android:layout_width="match_parent"
-            android:layout_height="557dp"
-            android:layout_weight="5"
-            android:background="@color/background" />
-
         <!--<com.stfalcom.chatkit.messages.MessageInput
 
             ></com.stfalcom.chatkit.messages.MessageInput>
        -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messagesList"
+            android:layout_width="match_parent"
+            android:layout_height="557dp"
+            android:layout_weight="5" />
+
         <EditText
             android:id="@+id/writeMessage"
             android:layout_width="match_parent"

@@ -34,6 +34,7 @@ public class contactRecycleViewAdapter extends RecyclerView.Adapter<contactRecyc
         holder.profileIMG.setImageResource(list.get(position).getProfileIMG());
         holder.nickName.setText(list.get(position).getNickName());
         holder.lastMessage.setText(list.get(position).getLastMessage());
+        holder.lastMessage.setText(list.get(position).getLastMessage());
     }
 
     @Override

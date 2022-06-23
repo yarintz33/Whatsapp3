@@ -22,16 +22,16 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
     class ContactViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView id;
-        private TextView message;
-        private TextView lasdate;
+        private TextView last;
+        private TextView lastdate;
         private ShapeableImageView profilePic;
         public CardView cardView;
         private ContactViewHolder(View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.contactItemNickname);
 //            id = itemView.findViewById(R.id.messageId);
-            message = itemView.findViewById(R.id.ContactItemLatMessage);
-            //lastdate =
+            last = itemView.findViewById(R.id.ContactItemLatMessage);
+            lastdate = itemView.findViewById(R.id.timeOFLastMessage);
             profilePic = itemView.findViewById(R.id.profileImage);
             cardView = itemView.findViewById(R.id.contactCardInList);
         }
@@ -59,6 +59,9 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         if (contacts != null){
             final  PostContact current = contacts.get(position);
             holder.name.setText(current.getName());
+            holder.last.setText(current.getLast());
+            holder.lastdate.setText(current.getLastdate());
+            //hi
             int p = position;
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
