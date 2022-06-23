@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MainActivityBinding.loginBtn.setOnClickListener(view -> {
-if(user.getValue() == null){
+/*if(user.getValue() == null){
     Log.d("Info","user.getValue());");
 
-}
+}*/
             if(username.getText().toString().equals("") || password.getText().toString().equals("")){
                 TVerrorMessage.setText("please enter username and password\n");
             }else{

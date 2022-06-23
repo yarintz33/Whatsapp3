@@ -1,6 +1,7 @@
 package com.example.whatsapp3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -41,6 +43,7 @@ import java.util.List;
 public class ChatAndContactsList extends AppCompatActivity implements contactsClickListener {
     private MutableLiveData<List<Message>> messages;
     private TokenApi tokenApi;
+    private EditText editText;
     private int flag = 0;
     private String token;
     private PostDao postDao;
@@ -49,6 +52,7 @@ public class ChatAndContactsList extends AppCompatActivity implements contactsCl
     private PostContactApi postContactApi;
     private UserApi userApi;
     private MessageApi messageApi;
+    private CardView cardView;
     private String incomingNickName;
     private String incomingId;
     private String incomingServerNumber;
@@ -77,11 +81,11 @@ public class ChatAndContactsList extends AppCompatActivity implements contactsCl
         background.setBackgroundColor(Settings.backgroundColor);
 
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ChatAndContactsList.this, instanceIdResult -> {
+        /*FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ChatAndContactsList.this, instanceIdResult -> {
             token = instanceIdResult.getToken();
             tokenApi = new TokenApi();
             tokenApi.post(new Token("Yarin", instanceIdResult.getToken()));
-        });
+        });*/
 
 
         messages = new MutableLiveData<>();
@@ -91,18 +95,19 @@ public class ChatAndContactsList extends AppCompatActivity implements contactsCl
         //viewModel = new ViewModelProvider(this).get(MessageViewModel.calss);
         viewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
 
-        PostContact pc = new PostContact("Maayan", "bdika", "", "", "localhost:5286");
+     //   PostContact pc = new PostContact("Maayan", "bdika", "", "", "localhost:5286");
 
-
-
-
+        editText = (EditText) findViewById(R.id.writeMessage);
+        editText.setVisibility(View.GONE);
+        cardView = findViewById(R.id.cardView);
+        cardView.setVisibility(View.GONE);;
         messageApi = new MessageApi();
         userApi = new UserApi();
         postContactApi = new PostContactApi();
         final ContactsListAdapter adapter = new ContactsListAdapter(this, this);
         contactsList.setAdapter(adapter);
         contactsList.setLayoutManager(new LinearLayoutManager(this));
-        User newUser = new User("Yarin","1234", "yerin" );
+       // User newUser = new User("Yarin","1234", "yerin" );
 
         viewModel.get().observe(this, postContacts -> {
             adapter.setPosts(postContacts);
@@ -171,6 +176,7 @@ public class ChatAndContactsList extends AppCompatActivity implements contactsCl
 //            //intent.putExtra("contact", po  stContact);
 //            startActivity(intent);
 //        }
+
         incomingNickName = postContact.getName();
         incomingId = postContact.getId();
         //chat:
@@ -184,7 +190,9 @@ public class ChatAndContactsList extends AppCompatActivity implements contactsCl
 
         postDao = db.postDao();
 
-        EditText editText = (EditText) findViewById(R.id.writeMessage);
+//        editText = (EditText) findViewById(R.id.writeMessage);
+        editText.setVisibility(View.VISIBLE);
+        cardView.setVisibility(View.VISIBLE);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
