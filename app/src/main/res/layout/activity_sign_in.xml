@@ -86,15 +86,23 @@
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_gallery" />
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/imageview"
+            android:layout_marginTop="20dp"
+            />
+
         <Button
             android:id="@+id/DoneBtn"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+
             android:rotationX="-2"
             android:text="@string/done" />
-
 
 
 

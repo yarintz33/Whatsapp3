@@ -1,26 +1,45 @@
 package com.example.whatsapp3.Activities;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.whatsapp3.R;
+import com.example.whatsapp3.RealPathUtil;
 import com.example.whatsapp3.User;
 import com.example.whatsapp3.api.UserApi;
+import com.example.whatsapp3.databinding.ActivitySignInBinding;
 
 public class SignInActivity extends AppCompatActivity {
        // private TextView errorMessage;
 //    private String errorMessage;
+
+ActivitySignInBinding binding;
+String path;
     private UserApi userApi;
     private MutableLiveData<User> user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    binding = ActivitySignInBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
+
+    clickListeners();
 
         setContentView(R.layout.activity_sign_in);
         user = new MutableLiveData<>();
@@ -71,6 +90,25 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
+    private void clickListeners() {
+        binding.imageButton.setOnClickListener(v->{
+            if(ContextCompat.checkSelfPermission(getApplicationContext(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+                Intent intent = new Intent();
+                intent.setType("inage/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,10);
+            }else{
+                ActivityCompat.requestPermissions(SignInActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+            }
+        });
+
+        binding.DoneBtn.setOnClickListener(v->{
+
+        });
+    }
+
+
 
     public static boolean is_Valid_Username(String username){
         if (username.length() < 5) return false;
@@ -115,5 +153,17 @@ public class SignInActivity extends AppCompatActivity {
     public static boolean is_Numeric(char ch) {
 
         return (ch >= '0' && ch <= '9');
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==10 && resultCode == Activity.RESULT_OK){
+            Uri uri = data.getData();
+            Context context = SignInActivity.this;
+            path = RealPathUtil.getRealPath(context,uri);
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            binding.imageview.setImageBitmap(bitmap);
+
+        }
     }
 }

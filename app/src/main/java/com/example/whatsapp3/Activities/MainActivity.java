@@ -39,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         MainActivityBinding = ActivityMainBinding.inflate(getLayoutInflater());
+
+
+
+        setContentView(MainActivityBinding.getRoot());
+
+
+
+
         user = new MutableLiveData<>();
         //user.setValue(new User("0", "", ""));
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, instanceIdResult -> {
@@ -109,7 +117,5 @@ public class MainActivity extends AppCompatActivity {
             String token = instanceIdResult.getToken();
         });*/
     }
-
-
 
 }
