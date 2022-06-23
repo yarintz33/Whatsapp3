@@ -1,6 +1,7 @@
 package com.example.whatsapp3.Activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.room.Room;
 
 import com.example.whatsapp3.Adapters.ContactsListAdapter;
 import com.example.whatsapp3.AppDataBase;
+import com.example.whatsapp3.ChatAndContactsList;
 import com.example.whatsapp3.ContactsViewModel;
 import com.example.whatsapp3.Message;
 import com.example.whatsapp3.PostContact;
@@ -51,6 +53,12 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Intent i = new Intent(this, ChatAndContactsList.class);
+            startActivity(i);
+        }
+
 
         RecyclerView contactsList = findViewById(R.id.contactsList);
         contactsList.setBackgroundColor(Settings.backgroundColor);
@@ -128,6 +136,10 @@ public class ContactsList extends AppCompatActivity  implements contactsClickLis
         super.onResume();
         RecyclerView contactsList = findViewById(R.id.contactsList);
         contactsList.setBackgroundColor(Settings.backgroundColor);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Intent i = new Intent(this, ChatAndContactsList.class);
+            startActivity(i);
+        }
     }
 
     @Override
