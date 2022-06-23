@@ -1,14 +1,16 @@
 package com.example.whatsapp3.api;
-
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.whatsapp3.Message;
 import com.example.whatsapp3.R;
 import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.myApplication;
 
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,19 +19,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MessageApi {
 
+    //public String jwt_token = UserApi.jwt_token;
     Retrofit retrofit;
     ServerMessageApi serverMessageApi;
 
     public MessageApi() {
+        String jwtToken = UserApi.jwt_token;
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request newRequest  = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + jwtToken)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
+        retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(Settings.serverNum)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        serverMessageApi = retrofit.create(ServerMessageApi.class);
+    }
+
+/*    public MessageApi() {
 //  this.postListData = postListData;
 //  this.dao = dao;
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(Settings.serverNum)
 //                .baseUrl(myApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serverMessageApi = retrofit.create(ServerMessageApi.class);
-    }
+    }*/
     /*public void add(MutableLiveData<List<User>> contactsListData, User newUser){
         List<PostContact> contacts=  contactsListData.getValue();
         contacts.add(newContact);

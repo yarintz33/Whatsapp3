@@ -24,7 +24,7 @@ public interface ServerUserApi {
         @DELETE("Post/{id}")
         Call<Void> deletePost(@Path("id") int id);
 
-        @PUT("signIn/{username}")
-        Call<Void> signIn(@Path("username") String username);
+        @PUT("signIn/{username}/{password}")
+        Call<User> signIn(@Path("username") String username, @Path("password") String password);
 
 }

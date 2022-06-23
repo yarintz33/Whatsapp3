@@ -9,8 +9,13 @@ import com.example.whatsapp3.R;
 import com.example.whatsapp3.Settings;
 import com.example.whatsapp3.myApplication;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,11 +23,52 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PostContactApi {
-
+    //private MutableLiveData<String> jwtToken;
     Retrofit retrofit;
     ServerContactApi serverContactApi;
 
     public PostContactApi() {
+//  this.postListData = postListData;
+//  this.dao = dao;
+        String jwtToken = UserApi.jwt_token;
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request newRequest  = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + jwtToken)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
+        retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(Settings.serverNum)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        serverContactApi = retrofit.create(ServerContactApi.class);
+    }
+
+    public void setRetrofitJwtToken() {
+        String jwtToken = UserApi.jwt_token;
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request newRequest  = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + jwtToken)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
+        retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(Settings.serverNum)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        serverContactApi = retrofit.create(ServerContactApi.class);
+    }
+    /*    public PostContactApi() {
 //  this.postListData = postListData;
 //  this.dao = dao;
 
@@ -32,7 +78,7 @@ public class PostContactApi {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serverContactApi = retrofit.create(ServerContactApi.class);
-    }
+    }*/
 
     public void add(MutableLiveData<List<PostContact>> contactsListData, PostContact newContact){
 

@@ -11,16 +11,22 @@ public class User {
     String id;
     String password;
     String name;
+    String jwtToken;
 
 
     //Image profilePic;
-
 
     public User(@NonNull String id,String password,String name) {
         this.id = id;
         this.password = password;
         this.name = name;
+    }
 
+    public User(@NonNull String id,String password,String name, String jwtToken) {
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.jwtToken = jwtToken;
     }
 
     @NonNull
@@ -34,6 +40,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getJwtToken() {
+        return jwtToken;
     }
 
     public void setName(String name) {
